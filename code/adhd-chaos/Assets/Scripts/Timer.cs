@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] public float timeRemaining = 10;
+    [SerializeField] public float timeRemainingInSeconds = 10;
     private bool timerIsRunning = false;
     private TMP_Text timeText;
 
