@@ -450,11 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d33910de8c942e00b48ef081f8ebf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookSpeedController: 120
-  m_LookSpeedMouse: 4
-  m_MoveSpeed: 10
-  m_MoveSpeedIncrement: 2.5
-  m_Turbo: 10
+  m_LookSpeedController: 1200
+  m_LookSpeedMouse: 0
+  m_MoveSpeed: 250
+  m_MoveSpeedIncrement: 5
+  m_Turbo: 1000
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afacfb4b5c1a0dcca9daafcc807e4452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDistance: 100
+  resetTime: 2
 --- !u!1 &1290899226
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,8 +779,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 679099519}
   - {fileID: 1290899227}
+  - {fileID: 679099519}
   m_Father: {fileID: 363989818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
