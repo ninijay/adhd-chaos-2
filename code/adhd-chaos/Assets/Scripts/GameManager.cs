@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private List<Button> spots = new List<Button>();
     Dictionary<HidingSpotBehaviour, Image> hidingSpots = new Dictionary<HidingSpotBehaviour, Image>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isRunning = true;
     void Start()
     {
         spots = findAllButtonsLocations();
@@ -56,6 +58,42 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Timer timer = FindObjectOfType<Timer>();
+        if (timer == null || (!timer.timerIsRunning && timer.timeRemainingInSeconds <= 0 && isRunning))
+        {
+            isRunning = false; // Stop the game logic from running
+            // If the timer is not running or has run out, show points and disable all buttons
+            Debug.Log("Timer has run out or is not running. Disabling all buttons.");
+            int points = currentTaskPrompt * 3;
+            foreach (Button spot in spots)
+            {
+                HidingSpotBehaviour btn = spot.GetComponent<HidingSpotBehaviour>();
+                if(btn.HasBeenFound)
+                    points++;
+                if (btn != null)
+                {
+                    btn.ResetHidingSpot();
+                    spot.interactable = false; // disable the button
+                }
+            }
+            // Show points or any other end-of-game logic here
+            TMP_Text pointsText = FindObjectOfType<TMP_Text>();
+            if (pointsText != null)
+            {
+                pointsText.text = "You found " + points;
+                if(points > 1)
+                    pointsText.text += " items!";
+                else
+                    pointsText.text += " item!";
+            }
+            else
+            {
+                Debug.LogError("Points text component not found in the scene.");
+            }
+            // Optionally, you
+            return;
+        }
+        
        // Check if all items have been found
        Button[] validHidingSpots = spots.Where(spot => spot.GetComponent<HidingSpotBehaviour>() != null && spot.GetComponent<HidingSpotBehaviour>().NeedsToBeFound).ToArray();
        int cntFoundSpots = validHidingSpots.Count(spot => spot.GetComponent<HidingSpotBehaviour>().HasBeenFound);
