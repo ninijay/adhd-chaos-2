@@ -8,7 +8,9 @@ public class HidingSpotBehaviour : MonoBehaviour
     [SerializeField] private float moveDistance = 100f; 
     [SerializeField] private float resetTime = 2f;
     [SerializeField] public bool isHiding = true;
-    
+    public bool HasBeenFound {get; private set; } = false;
+    public bool NeedsToBeFound { get; set; } = false;
+    public int HidingSpotIndex { get; set; } = -1;
     
     private void Awake()
     {
@@ -26,15 +28,23 @@ public class HidingSpotBehaviour : MonoBehaviour
         transform.Translate(Vector3.left * moveDistance); // Move the hiding spot to the left by 100 units
         // Make button non-interactable
         if(_button == null)
-        {
+        { 
             Debug.LogError("Button component is null on: " + gameObject.name);
             return;
         }
         _button.interactable = false;
-        
-        // ToDo: Give Points to Player, Complete Task
-        if(isHiding)
-            Debug.Log("Hiding spot selected: " + gameObject.name);
+
+        if (isHiding && NeedsToBeFound && !HasBeenFound)
+        {
+            Debug.Log("Hiding spot found: " + gameObject.name);
+            HasBeenFound = true;
+            Image image = TaskPanelBehaviour.FindAllTaskImages()[HidingSpotIndex];
+            image.color = Color.green; // Change the color of the image to green
+        }
+        else
+        {
+                
+        } 
         
         Invoke("ResetPosition", resetTime);
         

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -73,25 +74,22 @@ public class GameManager : MonoBehaviour
         {
             if (btn.isHiding)
             {
+                btn.NeedsToBeFound = true;
                 taskImages.Add(hidingSpots[btn]);     
             }
         }
         
-        // Get Panel Object
-        GameObject panel = GameObject.Find("Tasks");
-        if (panel == null)
-        {
-            Debug.LogError("Panel object not found in the scene.");
-            return;
-        }
-        
-        // Get Image component of the panel
-        Image[] panelImage = panel.GetComponents<Image>();
-        Image[] images = panelImage[0].GetComponentsInChildren<Image>();
+        Image [] images = TaskPanelBehaviour.FindAllTaskImages();
         int imageIndex = 1;
         foreach (Image taskImage in taskImages)
         {
             images[imageIndex].sprite = taskImage.sprite;
+            // set the index of the hiding spot in the task image
+            HidingSpotBehaviour hidingSpot = hidingSpots.FirstOrDefault(x => x.Value == taskImage).Key;
+            if (hidingSpot != null)
+                hidingSpot.HidingSpotIndex = imageIndex;
+            else
+                Debug.LogError("Hiding spot not found for task image: " + taskImage.name);
             imageIndex++;
         }
     }
