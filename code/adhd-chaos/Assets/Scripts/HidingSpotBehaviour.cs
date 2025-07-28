@@ -31,9 +31,12 @@ public class HidingSpotBehaviour : MonoBehaviour
             return;
         }
         _button.interactable = false;
+        
         // ToDo: Give Points to Player, Complete Task
         if(isHiding)
             Debug.Log("Hiding spot selected: " + gameObject.name);
+        
+        Invoke("ResetPosition", resetTime);
         
     }
     private void ResetPosition()
