@@ -12,8 +12,12 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         // Starts the timer automatically
-        timerIsRunning = true;
         timeText = GetComponent<TMP_Text>();
+    }
+
+    public void StartTimer()
+    {
+        timerIsRunning = true;
     }
 
     void Update()

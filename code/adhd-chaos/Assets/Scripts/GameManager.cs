@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public HighScores highScores;
     [SerializeField] private TMP_InputField playerNameInputField;
     [SerializeField] private Button saveButton;
+    
+    [SerializeField] private TMP_InputField seedInputField;
+    [SerializeField] private Button seedSaveButton;
+    [SerializeField] private GameObject seeder;
     private List<Image> taskImages = new List<Image>();
      
     private int currentAmntOfHiddenItemsToFind = 0;
@@ -24,48 +30,64 @@ public class GameManager : MonoBehaviour
     private bool isRunning = true;
     void Start()
     {
-        spots = findAllButtonsLocations();
-        List<Image> hiddenItems = findAllHiddenItemsLocations();
-        
-        // hide highscores in UI
-        if (highScores != null)
+        Timer timer = FindObjectOfType<Timer>();
+        seedInputField.text = "" + randomSeed;
+        seedSaveButton.onClick.AddListener(() =>
         {
-            highScores.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("HighScores component not found in the scene.");
-        }
+            if (int.TryParse(seedInputField.text, out int newSeed))
+            {
+                randomSeed = newSeed;
+                Debug.Log("Random seed set to: " + randomSeed);
+                seeder.SetActive(false); 
+            }
+            else
+            {
+                Debug.LogError("Invalid seed input. Please enter a valid integer.");
+            }spots = findAllButtonsLocations();
+            List<Image> hiddenItems = findAllHiddenItemsLocations();
         
-        Debug.Log("Found " + spots.Count + " hiding spots and " + hiddenItems.Count + " hidden items in the scene.");
+            // hide highscores in UI
+            if (highScores != null)
+            {
+                highScores.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError("HighScores component not found in the scene.");
+            }
         
-        // Randomize the hiding spots that players need to find
-       RandomizeTaskFinding(); 
+            Debug.Log("Found " + spots.Count + " hiding spots and " + hiddenItems.Count + " hidden items in the scene.");
         
-        // move position of hidden items to the hiding spots randomly using the random seed
-        int foundSpotsCount = 0;
-        int totalspotsCount = spots.Count;
-        bool[] usedSpots = new bool[totalspotsCount];
-        while (foundSpotsCount < totalspotsCount)
-        {
-            int randomIndex = Random.Range(0, totalspotsCount);
-            if (usedSpots[randomIndex])
-                continue;
+            // Randomize the hiding spots that players need to find
+            RandomizeTaskFinding(); 
+        
+            // move position of hidden items to the hiding spots randomly using the random seed
+            int foundSpotsCount = 0;
+            int totalspotsCount = spots.Count;
+            bool[] usedSpots = new bool[totalspotsCount];
+            while (foundSpotsCount < totalspotsCount)
+            {
+                int randomIndex = Random.Range(0, totalspotsCount);
+                if (usedSpots[randomIndex])
+                    continue;
 
-            usedSpots[randomIndex] = true;
-            Button currentSpot = spots[randomIndex];
-            HidingSpotBehaviour btn = currentSpot.GetComponent<HidingSpotBehaviour>();
-            if (btn == null)
-                continue;
+                usedSpots[randomIndex] = true;
+                Button currentSpot = spots[randomIndex];
+                HidingSpotBehaviour btn = currentSpot.GetComponent<HidingSpotBehaviour>();
+                if (btn == null)
+                    continue;
 
-            Image hiddenItem = hiddenItems[foundSpotsCount];
-            hiddenItem.transform.position = currentSpot.transform.position;
-            hidingSpots.Add(btn, hiddenItem);
-            foundSpotsCount++;
-        }
+                Image hiddenItem = hiddenItems[foundSpotsCount];
+                hiddenItem.transform.position = currentSpot.transform.position;
+                hidingSpots.Add(btn, hiddenItem);
+                foundSpotsCount++;
+            }
 
-        // add all items that have to be found to the taskImages list
-        SetTasksAndImages();       
+            // add all items that have to be found to the taskImages list
+            SetTasksAndImages();    
+            timer.StartTimer();
+        });
+           
     }
 
     // Update is called once per frame
