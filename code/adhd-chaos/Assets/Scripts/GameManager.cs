@@ -87,10 +87,11 @@ public class GameManager : MonoBehaviour
         
         // Get Image component of the panel
         Image[] panelImage = panel.GetComponents<Image>();
-        int imageIndex = 0;
+        Image[] images = panelImage[0].GetComponentsInChildren<Image>();
+        int imageIndex = 1;
         foreach (Image taskImage in taskImages)
         {
-            panelImage[imageIndex].sprite = taskImage.sprite;
+            images[imageIndex].sprite = taskImage.sprite;
             imageIndex++;
         }
     }
