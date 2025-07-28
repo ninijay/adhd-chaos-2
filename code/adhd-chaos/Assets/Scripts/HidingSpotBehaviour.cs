@@ -64,4 +64,16 @@ public class HidingSpotBehaviour : MonoBehaviour
         _button.interactable = true;
         Debug.Log("Hiding spot enabled: " + _button.IsInteractable());
     }
+    
+    public void ResetHidingSpot()
+    {
+        isHiding = false;
+        HasBeenFound = false;
+        NeedsToBeFound = false;
+        HidingSpotIndex = -1;
+        if (_button != null)
+        {
+            _button.interactable = true;
+        }
+    }
 }
