@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
@@ -19,15 +20,15 @@ public class Timer : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
+            if (timeRemainingInSeconds > 0)
             {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
+                timeRemainingInSeconds -= Time.deltaTime;
+                DisplayTime(timeRemainingInSeconds);
             }
             else
             {
                 Debug.Log("Time has run out!");
-                timeRemaining = 0;
+                timeRemainingInSeconds = 0;
                 timerIsRunning = false;
             }
         }
