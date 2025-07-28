@@ -50,7 +50,9 @@ public class HighScoreSaver : MonoBehaviour
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Leaderboard));
             FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml", FileMode.Open);
+            Debug.Log(Application.persistentDataPath + "/HighScores/highscores.xml");
             leaderboard = serializer.Deserialize(stream) as Leaderboard;
+            stream.Close();
         }
         else
         {

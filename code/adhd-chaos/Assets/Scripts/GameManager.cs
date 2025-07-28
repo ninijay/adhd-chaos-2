@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
         highScores.AddNewScore(playerName, points, seed);
         highScores.UpdateDisplay();
         highScores.SaveScores(); // Save the scores to persistent storage
+        saveButton.interactable = false;
     }
     
     private void RandomizeTaskFinding()
