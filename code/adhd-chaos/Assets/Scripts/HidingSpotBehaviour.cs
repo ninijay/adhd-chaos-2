@@ -7,7 +7,7 @@ public class HidingSpotBehaviour : MonoBehaviour
     // Editor fields to set the reset time in seconds and the distance to move
     [SerializeField] private float moveDistance = 100f; 
     [SerializeField] private float resetTime = 2f;
-    [SerializeField] private bool isHiding = true;
+    [SerializeField] public bool isHiding = true;
     
     
     private void Awake()
