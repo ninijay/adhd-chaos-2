@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_InputField seedInputField;
     [SerializeField] private Button seedSaveButton;
     [SerializeField] private GameObject seeder;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private Button restartButton;
     private List<Image> taskImages = new List<Image>();
      
     private int currentAmntOfHiddenItemsToFind = 0;
@@ -32,6 +34,11 @@ public class GameManager : MonoBehaviour
     {
         Timer timer = FindObjectOfType<Timer>();
         seedInputField.text = "" + randomSeed;
+        exitButton.onClick.AddListener(() => Application.Quit());
+        restartButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
         seedSaveButton.onClick.AddListener(() =>
         {
             if (int.TryParse(seedInputField.text, out int newSeed))
