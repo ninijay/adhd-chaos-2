@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int randomSeed = 420;
     [SerializeField] private int amountOfItemsToFind = 1;
     [SerializeField] public HighScores highScores;
+    [SerializeField] private TMP_InputField playerNameInputField;
+    [SerializeField] private Button saveButton;
     private List<Image> taskImages = new List<Image>();
      
     private int currentAmntOfHiddenItemsToFind = 0;
@@ -102,13 +104,11 @@ public class GameManager : MonoBehaviour
             
             if (highScores != null)
             {
-                // Add the score to the high scores
-                string playerName = "Player"; // You can replace this with a UI input field for player name
-                int seed = randomSeed; // Use the current task prompt as the seed
-                highScores.AddNewScore(playerName, points, seed);
-                highScores.UpdateDisplay();
                 highScores.gameObject.SetActive(true); // Show the high scores UI
-                highScores.SaveScores(); // Save the scores to persistent storage
+                // Add the score to the high scores
+                // wait for player name input and button click
+                saveButton.interactable = true; // Enable the save button
+                saveButton.onClick.AddListener(OnSaveButtonClick);
             }
             else
             {
@@ -134,6 +134,22 @@ public class GameManager : MonoBehaviour
            RandomizeTaskFinding();
            SetTasksAndImages();
        }
+    }
+    
+    private void OnSaveButtonClick()
+    {
+        string playerName = playerNameInputField.text; // Get the player name from the input field
+        if (string.IsNullOrEmpty(playerName))
+        {
+            Debug.LogError("Player name is empty. Please enter a valid name.");
+            return;
+        }
+        
+        int points = currentTaskPrompt; // Use the current task prompt as the score
+        int seed = randomSeed; // Use the current task prompt as the seed
+        highScores.AddNewScore(playerName, points, seed);
+        highScores.UpdateDisplay();
+        highScores.SaveScores(); // Save the scores to persistent storage
     }
     
     private void RandomizeTaskFinding()
