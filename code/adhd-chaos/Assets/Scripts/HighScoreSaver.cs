@@ -39,9 +39,10 @@ public class HighScoreSaver : MonoBehaviour
         }
         leaderboard.list = scoresToSave;
         XmlSerializer serializer = new XmlSerializer(typeof(Leaderboard));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml", FileMode.Create);
-        serializer.Serialize(stream, leaderboard);
-        stream.Close();
+        using(FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml", FileMode.Create)){
+            serializer.Serialize(stream, leaderboard);
+            stream.Close();
+        }
     }
 
     public List<HighScoreEntry> LoadScores()
@@ -49,10 +50,23 @@ public class HighScoreSaver : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/HighScores/highscores.xml"))
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Leaderboard));
-            FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml", FileMode.Open);
-            Debug.Log(Application.persistentDataPath + "/HighScores/highscores.xml");
-            leaderboard = serializer.Deserialize(stream) as Leaderboard;
-            stream.Close();
+            using (FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml",
+                       FileMode.Open))
+            {
+                
+                Debug.Log(Application.persistentDataPath + "/HighScores/highscores.xml");
+                try
+                {
+                    leaderboard = serializer.Deserialize(stream) as Leaderboard;
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("Failed to deserialize high scores: " + e.Message);
+                    leaderboard = new Leaderboard();
+                }
+
+                stream.Close();
+            }
         }
         else
         {
