@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cb9b6f292d4634b24a95dc2a9e2f2534
+guid: b195d905237bc44098f88adeb7c278a3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5527985269800492741
-    second: HiddenObject_10_0
+      213: -347190207515988690
+    second: HiddingSpot_09_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -47,11 +47,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
-  spriteMeshType: 0
+  spriteExtrude: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 1024
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HiddenObject_10_0
+      name: HiddingSpot_09_0
       rect:
         serializedVersion: 2
-        x: 216
-        y: 105
-        width: 99
-        height: 260
+        x: 265
+        y: 210
+        width: 506
+        height: 586
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3123f58fa6a843b0800000000000000
-      internalID: -5527985269800492741
+      spriteID: e2de38388588e2bf0800000000000000
+      internalID: -347190207515988690
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HiddenObject_10_0: -5527985269800492741
+      HiddingSpot_09_0: -347190207515988690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
