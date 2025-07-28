@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int randomSeed = 420;
     [SerializeField] private int amountOfItemsToFind = 1;
+    [SerializeField] public HighScores highScores;
     private List<Image> taskImages = new List<Image>();
-   
+     
     private int currentAmntOfHiddenItemsToFind = 0;
 
     private int currentTaskPrompt = 0; // every time 3 the amountOfItems is found, this number is increased by 1, and added to the seed for randomization
@@ -23,6 +24,16 @@ public class GameManager : MonoBehaviour
     {
         spots = findAllButtonsLocations();
         List<Image> hiddenItems = findAllHiddenItemsLocations();
+        
+        // hide highscores in UI
+        if (highScores != null)
+        {
+            highScores.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("HighScores component not found in the scene.");
+        }
         
         Debug.Log("Found " + spots.Count + " hiding spots and " + hiddenItems.Count + " hidden items in the scene.");
         
@@ -64,12 +75,10 @@ public class GameManager : MonoBehaviour
             isRunning = false; // Stop the game logic from running
             // If the timer is not running or has run out, show points and disable all buttons
             Debug.Log("Timer has run out or is not running. Disabling all buttons.");
-            int points = currentTaskPrompt * 3;
+            int points = currentTaskPrompt;
             foreach (Button spot in spots)
             {
                 HidingSpotBehaviour btn = spot.GetComponent<HidingSpotBehaviour>();
-                if(btn.HasBeenFound)
-                    points++;
                 if (btn != null)
                 {
                     btn.ResetHidingSpot();
@@ -80,17 +89,32 @@ public class GameManager : MonoBehaviour
             TMP_Text pointsText = FindObjectOfType<TMP_Text>();
             if (pointsText != null)
             {
-                pointsText.text = "You found " + points;
+                pointsText.text = "You got " + points;
                 if(points > 1)
-                    pointsText.text += " items!";
+                    pointsText.text += " points!";
                 else
-                    pointsText.text += " item!";
+                    pointsText.text += " point!";
             }
             else
             {
                 Debug.LogError("Points text component not found in the scene.");
             }
-            // Optionally, you
+            
+            if (highScores != null)
+            {
+                // Add the score to the high scores
+                string playerName = "Player"; // You can replace this with a UI input field for player name
+                int seed = randomSeed; // Use the current task prompt as the seed
+                highScores.AddNewScore(playerName, points, seed);
+                highScores.UpdateDisplay();
+                highScores.gameObject.SetActive(true); // Show the high scores UI
+                highScores.SaveScores(); // Save the scores to persistent storage
+            }
+            else
+            {
+                Debug.LogError("HighScores component not found in the scene.");
+            }
+
             return;
         }
         
