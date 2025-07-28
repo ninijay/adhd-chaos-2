@@ -304,7 +304,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 107.600006, y: 5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48445566
 MonoBehaviour:
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &135292599
 MonoBehaviour:
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &190186311
 MonoBehaviour:
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &351369953
 MonoBehaviour:
@@ -1289,7 +1289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &388548872
 MonoBehaviour:
@@ -1976,7 +1976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!1 &713732540
 GameObject:
@@ -2106,7 +2106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &752858108
 MonoBehaviour:
@@ -2617,7 +2617,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -125.4, y: 5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216968744
 MonoBehaviour:
@@ -2633,7 +2633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3085,7 +3085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &1649663340
 MonoBehaviour:
@@ -3400,7 +3400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &1738073240
 MonoBehaviour:
@@ -3537,7 +3537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &1748321727
 MonoBehaviour:
@@ -3656,8 +3656,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.8, y: 578}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 357.55396, y: 457}
+  m_SizeDelta: {x: 691.508, y: 110.599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788546048
 MonoBehaviour:
@@ -3671,7 +3671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d560710c0c8708070ac9399ea1ee54f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemainingInSeconds: 120
+  timeRemainingInSeconds: 60
 --- !u!114 &1788546049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3719,13 +3719,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -3991,7 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &1899872435
 MonoBehaviour:
@@ -4110,7 +4110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -10.39999, y: 5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943671475
 MonoBehaviour:
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4203,7 +4203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDistance: 300
-  resetTime: 2
+  resetTime: 0.7
   isHiding: 0
 --- !u!114 &1996911881
 MonoBehaviour:
